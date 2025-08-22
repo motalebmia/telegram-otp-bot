@@ -390,6 +390,7 @@ def keep_alive():
     
 # --- প্রধান ফাংশন এবং বট চালু করার প্রক্রিয়া ---
 async def main():
+    keep_alive()
     setup_database()
     ptb_app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
