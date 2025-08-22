@@ -372,6 +372,22 @@ async def broadcast_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await asyncio.sleep(BROADCAST_SLEEP_TIME)
     await update.message.reply_text(f"ব্রডকাস্ট সম্পন্ন!\nসফল: {success_count} জন। ব্যর্থ: {fail_count} জন।")
 
+# --- Render-কে সচল রাখার জন্য Flask ওয়েব সার্ভার ---
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run():
+    # Render automatically sets the PORT environment variable
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+    
 # --- প্রধান ফাংশন এবং বট চালু করার প্রক্রিয়া ---
 async def main():
     setup_database()
