@@ -2,3 +2,4 @@ python-telegram-bot
 telethon
 SQLAlchemy
 psycopg2-binary
+Flask
